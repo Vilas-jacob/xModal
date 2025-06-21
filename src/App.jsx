@@ -10,7 +10,7 @@ function App() {
   const [dob,setDob]=useState("");
 
   const modalClasses = 'modal fixed top-1/2 left-1/2 right-auto bottom-auto -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-8 rounded-lg w-96';
-  const overlayClasses='ReactModal__Overlay fixed inset-0 bg-gray-300 bg-opacity-50 pointer-events-auto';
+  const overlayClasses='fixed inset-0 bg-gray-300 bg-opacity-50 pointer-events-auto';
 
   Modal.setAppElement('#root');
 
