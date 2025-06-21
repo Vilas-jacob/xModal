@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [dob, setDob] = useState("");
+  const modalRef = useRef(null);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -22,6 +23,23 @@ function App() {
     setPhoneNumber("");
     setDob("");
   };
+
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    if (modalIsOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalIsOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,20 +62,36 @@ function App() {
     }
 
     resetForm();
-    closeModal(); 
+    closeModal();
   };
 
   return (
     <div>
       <div className='flex flex-col justify-center items-center space-y-5 mt-20'>
-        <h1 className='text-2xl font-bold'>User  Details Modal</h1>
-        <button className='bg-blue-600 rounded-lg text-white px-5 py-2 text-lg font-semibold' onClick={openModal}>Open Form</button>
+        <h1 className='text-2xl font-bold'>User Details Modal</h1>
+        <button 
+          className='bg-blue-600 rounded-lg text-white px-5 py-2 text-lg font-semibold' 
+          onClick={openModal}
+        >
+          Open Form
+        </button>
       </div>
 
       {modalIsOpen && (
-        <div className='modal fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50'>
-          <div className='modal-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-8 rounded-lg w-96'>
-            <button className='absolute top-2 right-2 text-gray-500' onClick={closeModal}>X</button>
+        <div 
+          className='modal fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50'
+          data-testid="modal-overlay"
+        >
+          <div 
+            ref={modalRef}
+            className='modal-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-8 rounded-lg w-96'
+          >
+            <button 
+              className='absolute top-2 right-2 text-gray-500' 
+              onClick={closeModal}
+            >
+              ✕
+            </button>
             <form className='flex flex-col justify-center items-center space-y-4' onSubmit={handleSubmit}>
               <h1 className='text-2xl font-bold'>Fill Details</h1>
 
@@ -68,7 +102,7 @@ function App() {
                   id='username'
                   value={username}
                   type='text'
-                  required
+                  required 
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
@@ -80,7 +114,7 @@ function App() {
                   id='email'
                   value={email}
                   type='email'
-                  required
+                  required 
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -92,7 +126,7 @@ function App() {
                   id='phone'
                   value={phoneNumber}
                   type='number'
-                  required
+                  required 
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
@@ -104,7 +138,7 @@ function App() {
                   id='dob'
                   value={dob}
                   type='date'
-                  required
+                  required 
                   onChange={(e) => setDob(e.target.value)}
                 />
               </div>
