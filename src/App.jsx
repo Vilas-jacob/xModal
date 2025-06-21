@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div className='modal'>
+    <div>
       <div className='flex flex-col justify-center items-center space-y-5 mt-20'>
         <h1 className='text-2xl font-bold'>User Details Modal</h1>
         <button className='bg-blue-600 rounded-lg text-white px-5 py-2 text-lg font-semibold' onClick={openModal}>Open Form</button>
