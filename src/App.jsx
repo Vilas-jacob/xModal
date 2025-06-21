@@ -55,8 +55,8 @@ function App() {
       </div>
 
       {modalIsOpen && (
-        <div className='fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50'>
-          <div className='modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-8 rounded-lg w-96'>
+        <div className='modal fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-50'>
+          <div className='modal-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white py-8 px-8 rounded-lg w-96'>
             <button className='absolute top-2 right-2 text-gray-500' onClick={closeModal}>X</button>
             <form className='flex flex-col justify-center items-center space-y-4' onSubmit={handleSubmit}>
               <h1 className='text-2xl font-bold'>Fill Details</h1>
