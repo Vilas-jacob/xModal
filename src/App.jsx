@@ -81,7 +81,7 @@ function App() {
               <label className='text-lg font-semibold'>Date of Birth:</label>
               <input className='border-1 border-gray-200 py-2 px-2 rounded-md w-70' id='dob' value={dob} type='date'  required onChange={(e)=>setDob(e.target.value)}></input>
             </div>
-            <button className='bg-sky-400 rounded-md py-2 px-10 text-white font-semibold text-md' type='submit'>Submit</button>
+            <button className='submit-button bg-sky-400 rounded-md py-2 px-10 text-white font-semibold text-md' type='submit'>Submit</button>
           </form>
         </div>
       </Modal>
